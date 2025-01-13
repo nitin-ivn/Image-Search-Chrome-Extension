@@ -1,5 +1,10 @@
-body{
-    width: 10rem;
-    height: 10rem;
+.page{
+    width: fit-content;
+    height: fit-content;
     padding: 10px;
+}
+
+.initial-img{
+    max-width: 47rem;
+    max-height: 47rem;
 }
