@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "cropper": "^4.1.0",
+    "cropperjs": "^2.0.0-rc.2",
     "html2canvas": "^1.4.1"
   }
 }

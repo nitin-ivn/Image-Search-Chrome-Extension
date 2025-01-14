@@ -1,10 +1,11 @@
 .page{
-    width: fit-content;
+    width: 47rem;
+    height: 47rem;
     height: fit-content;
     padding: 10px;
 }
 
 .initial-img{
-    max-width: 47rem;
-    max-height: 47rem;
+    width: 100%;
+    height: auto;
 }
