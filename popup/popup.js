@@ -1,6 +1,5 @@
 
 let cropper;
-
 const capture = document.getElementById("capture");
 capture.addEventListener('click', () => {
     chrome.runtime.sendMessage({action: 'captureScreenshot'}, (response) => {
@@ -15,14 +14,12 @@ function showImage(imageURL){
     screenshot.src = imageURL;
 
     screenshot.onload = () => {
-        cropper = new Cropper.default(screenshot, {
-            aspectRatio: 0,
-            viewMode: 0,
-            autoCropArea: 1,
-            movable: true,
-            zoomable: true,
-            background: true,
-            responsive: true,
+        cropper = new Cropper(screenshot, {
+            initialAspectRatio: 16 / 9,
+            aspectRatio: NaN,
+            zoomOnWheel: true,
+            guides: true,
+            highlight: true,
         });
     };
 }

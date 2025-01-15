@@ -1,6 +1,6 @@
 .page{
     width: 47rem;
-    height: 47rem;
+    height: 50rem;
     height: fit-content;
     padding: 10px;
 }
@@ -8,4 +8,5 @@
 .initial-img{
     width: 100%;
     height: auto;
+    display: block;
 }
