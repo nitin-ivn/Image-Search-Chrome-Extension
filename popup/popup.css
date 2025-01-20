@@ -10,3 +10,15 @@
     height: auto;
     display: block;
 }
+
+.pre-con{
+    display: none;
+}
+
+#crop{
+    display: none;
+}
+
+#search-op{
+    display: none;
+}

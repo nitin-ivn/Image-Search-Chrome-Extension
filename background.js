@@ -4,7 +4,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             if(chrome.runtime.lastError){
                 console.error(chrome.runtime.lastError);
             } else {
-                console.log(screenshotURL);
                 sendResponse({imageURL: screenshotURL})
             }
         });
