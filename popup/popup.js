@@ -16,7 +16,6 @@ capture.addEventListener('click', () => {
 
 function showImage(imageURL){
     screenshot.src = imageURL;
-
     screenshot.onload = () => {
         document.getElementById("crop").style.display = "block"
         cropper = new Cropper(screenshot, {
