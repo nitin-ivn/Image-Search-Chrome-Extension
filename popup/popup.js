@@ -38,7 +38,6 @@ document.getElementById("crop").addEventListener('click', () => {
     let croppedImg = preview.toDataURL('image/png');
 
     cropper.destroy();
-    console.log(previewImg);
     previewImg.src = croppedImg;
     
     document.querySelector(".pre-con").style.display = "block";
