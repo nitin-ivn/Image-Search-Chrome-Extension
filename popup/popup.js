@@ -7,14 +7,14 @@ let searchOptions = document.getElementById("search-op");
 
 
 capture.addEventListener('click', () => {
-    chrome.runtime.sendMessage({action: 'captureScreenshot'}, (response) => {
-        if(response.imageURL) {
+    chrome.runtime.sendMessage({ action: 'captureScreenshot' }, (response) => {
+        if (response.imageURL) {
             showImage(response.imageURL);
         }
     });
 });
 
-function showImage(imageURL){
+function showImage(imageURL) {
     screenshot.src = imageURL;
     screenshot.onload = () => {
         document.getElementById("crop").style.display = "block"
@@ -29,7 +29,7 @@ function showImage(imageURL){
 }
 
 document.getElementById("crop").addEventListener('click', () => {
-    if(!cropper){
+    if (!cropper) {
         alert("Please Select An Region");
     }
 
@@ -38,7 +38,7 @@ document.getElementById("crop").addEventListener('click', () => {
 
     cropper.destroy();
     previewImg.src = croppedImg;
-    
+
     document.querySelector(".pre-con").style.display = "block";
     document.querySelector(".con").style.display = "none";
 
