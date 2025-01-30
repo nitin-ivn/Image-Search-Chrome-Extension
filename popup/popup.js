@@ -5,6 +5,8 @@ const screenshot = document.getElementById("initialImage");
 let previewImg = document.getElementById("preview");
 let searchOptions = document.getElementById("search-op");
 
+const apiKey = CONFIG.api_key;
+console.log(apiKey)
 
 capture.addEventListener('click', () => {
     chrome.runtime.sendMessage({ action: 'captureScreenshot' }, (response) => {
@@ -44,27 +46,31 @@ document.getElementById("crop").addEventListener('click', () => {
 
     document.getElementById("crop").style.display = "none"
     searchOptions.style.display = "block";
-})
+});
 
+async function uploadImage(img) {
+    const formData = new FormData();
+    formData.append("image", img.split(',')[1]);
+    const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+        method: "POST",
+        body: formData
+    });
 
-document.getElementById("searchImage").addEventListener('click', () => {
-    let data = previewImg.src;
-    let blobOfData = dataURLtoBlob(data);
-    const objectURL = URL.createObjectURL(blobOfData);
-    console.log(objectURL);
-
-    const searchUrl2 = 'https://tineye.com/search?url=${encodeURIComponent(objectURL)}';
-
-    const searchUrl = 'https://www.google.com/searchbyimage?image_url=${encodeURIComponent(objectURL)}';
-    chrome.tabs.create({ url: searchUrl2 });
-})
-
-
-function dataURLtoBlob(dataurl) {
-    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-    while(n--){
-        u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new Blob([u8arr], {type:mime});
+    const data = await response.json();
+    return data.success ? data.data.image.url : null;
 }
+
+
+document.getElementById("searchImage").addEventListener('click', async () => {
+    let data = previewImg.src;
+    let imageURL = await uploadImage(data);
+    if(!imageURL){
+        alert("failed to upload image, Try Again");
+        return
+    }
+
+    const searchUrlTinEye = `https://tineye.com/search?url=${encodeURIComponent(imageURL)}`;
+    const searchUrlGoogle = `https://lens.google.com/uploadbyurl?url=${encodeURIComponent(imageURL)}`;
+    chrome.tabs.create({ url: searchUrlGoogle });
+    chrome.tabs.create({ url: searchUrlTinEye });
+})
