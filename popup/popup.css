@@ -1,8 +1,37 @@
+:root{
+    --backgroound-color: #f5f5f5;
+    /* --foreground-color: #50749c; */
+    --foreground-color: rgb(48, 48, 48);
+}
+
 .page {
-    width: 47rem;
-    height: 50rem;
+    min-width: 20rem;
+    min-height: 22rem;
     height: fit-content;
+    background-color: var(--backgroound-color);
+    color: var(--foreground-color);
+}
+
+.nav-bar{
+    width: 5rem;
+}
+
+.home{
     padding: 10px;
+}
+
+.bg{
+    background-color: #ececec;
+}
+
+.nav{
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
 }
 
 .initial-img {
